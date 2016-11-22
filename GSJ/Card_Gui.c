@@ -1,11 +1,15 @@
 #include <gtk/gtk.h>
 
-
-char buf[5];
+int flag[16] = {0,};
 
 void reaction(GtkWidget *widget, gpointer data)
 {
-	printf("%s\n",(char *)data);
+
+  volatile int x,y;
+  GdkColor red,white;
+  gdk_color_parse ("red", &red);
+  gdk_color_parse ("white", &white);
+  gtk_widget_modify_bg ( widget, GTK_STATE_NORMAL, &red);
 }
 
 int main( int argc, char *argv[])
@@ -16,6 +20,8 @@ int main( int argc, char *argv[])
   GtkWidget *card_16,*card_9,*card_10,*card_12,*card_13,*card_14,*card_15,*card_11;
   GtkWidget *level,*exit,*start;
   GtkWidget *score_label,*score;
+
+
   gtk_init(&argc, &argv);
   //Window
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -91,6 +97,7 @@ int main( int argc, char *argv[])
   gtk_widget_set_size_request(card_16,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_16,260,380);
 
+
   //Test label
   level = gtk_label_new("LEVEL XX");
   gtk_fixed_put(GTK_FIXED(frame),level,410,60);
@@ -108,6 +115,8 @@ int main( int argc, char *argv[])
   exit = gtk_button_new_with_label("EXIT");
   gtk_widget_set_size_request(exit,120,30);
   gtk_fixed_put(GTK_FIXED(frame),exit,380,355);
+
+
   
   //Widget Show
   gtk_widget_show_all(window);
@@ -133,5 +142,6 @@ int main( int argc, char *argv[])
   g_signal_connect(start,"clicked",G_CALLBACK(reaction),(gpointer)"start");
   gtk_main();
 
+ 
   return 0;
 }
