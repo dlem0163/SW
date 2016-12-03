@@ -4,6 +4,15 @@
 
 int flag[4][4] = {0,};
 
+int select_flag =0;
+
+int First;
+int Second;
+
+
+GtkWidget *card_1,*card_2,*card_3,*card_4,*card_5,*card_6,*card_7,*card_8;
+GtkWidget *card_16,*card_9,*card_10,*card_12,*card_13,*card_14,*card_15,*card_11;
+
 void reaction(int Card_Num);
 
 void Card1_Press()
@@ -71,9 +80,124 @@ void Card16_Press()
   reaction(16);
 }
 
+void button_color_setting(char *color)
+{
+  GdkColor bg;
+  gdk_color_parse( color, &bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_1),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_2),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_3),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_4),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_5),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_6),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_7),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_8),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_9),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_10),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_11),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_12),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_13),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_14),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_15),GTK_STATE_NORMAL,&bg);
+  gtk_widget_modify_bg(GTK_WIDGET(card_16),GTK_STATE_NORMAL,&bg);
+}
+
 void reaction(int Card_Num)
 {
-	printf("Card Number is %d\n",Card_Num);
+  GdkColor blue;
+  gdk_color_parse( "#0000FF", &blue);
+
+  if(select_flag == 0)
+  {
+        button_color_setting("#FF0000");
+  	First = Card_Num;
+	select_flag = 1;
+  }
+  else if(select_flag == 1)	
+  {
+	Second = Card_Num;
+  	printf("Card Number is %d(Frist),%d(Second)\n",First,Second);
+  	select_flag = 0;
+	if(First == Second)
+		printf("같은 카드를 선택하지마시오.\n");
+	First = Second = 0;
+  }
+  
+  if(Card_Num == 1)
+  {
+  	gtk_widget_modify_bg(GTK_WIDGET(card_1),GTK_STATE_NORMAL,&blue);
+  }
+  else if(Card_Num == 2)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_2),GTK_STATE_NORMAL,&blue);
+  }
+  else if(Card_Num == 3)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_3),GTK_STATE_NORMAL,&blue);
+  }
+  else if(Card_Num == 4)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_4),GTK_STATE_NORMAL,&blue);
+  }
+  else if(Card_Num == 5)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_5),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 6)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_6),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 7)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_7),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 8)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_8),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 9)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_9),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 10)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_10),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 11)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_11),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 12)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_12),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 13)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_13),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 14)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_14),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 15)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_15),GTK_STATE_NORMAL,&blue);
+  }
+
+  else if(Card_Num == 16)
+  {
+	gtk_widget_modify_bg(GTK_WIDGET(card_16),GTK_STATE_NORMAL,&blue);
+  }
 }
 
 
@@ -86,10 +210,12 @@ int main( int argc, char *argv[])
 {
   GtkWidget *window;
   GtkWidget *frame;
-  GtkWidget *card_1,*card_2,*card_3,*card_4,*card_5,*card_6,*card_7,*card_8;
-  GtkWidget *card_16,*card_9,*card_10,*card_12,*card_13,*card_14,*card_15,*card_11;
   GtkWidget *level,*exit,*start;
   GtkWidget *score_label,*score;
+
+  GdkColor red,blue;
+  gdk_color_parse( "#FF0000", &red);
+  gdk_color_parse( "#0000FF", &blue);
 
 
   gtk_init(&argc, &argv);
@@ -101,7 +227,7 @@ int main( int argc, char *argv[])
   //Frame
   frame = gtk_fixed_new();
   gtk_container_add(GTK_CONTAINER(window),frame);
-  //Card 1
+  //Card 1_array
   card_1 = gtk_button_new_with_label("1");
   gtk_widget_set_size_request(card_1,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_1,5,5);
@@ -118,7 +244,7 @@ int main( int argc, char *argv[])
   gtk_widget_set_size_request(card_4,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_4,260,5);
   
-  //Card 2
+  //Card 2_array
   card_5 = gtk_button_new_with_label("5");
   gtk_widget_set_size_request(card_5,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_5,5,130);
@@ -134,7 +260,7 @@ int main( int argc, char *argv[])
   card_8 = gtk_button_new_with_label("8");
   gtk_widget_set_size_request(card_8,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_8,260,130);
-  //Card 3
+  //Card 3_array
   card_9 = gtk_button_new_with_label("9");
   gtk_widget_set_size_request(card_9,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_9,5,255);
@@ -150,7 +276,7 @@ int main( int argc, char *argv[])
   card_12 = gtk_button_new_with_label("12");
   gtk_widget_set_size_request(card_12,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_12,260,255);
-  //Card 4
+  //Card 4_array
   card_13 = gtk_button_new_with_label("13");
   gtk_widget_set_size_request(card_13,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_13,5,380);
@@ -187,7 +313,28 @@ int main( int argc, char *argv[])
   gtk_fixed_put(GTK_FIXED(frame),exit,380,355);
 
 
-  
+  //Color_SELECTED
+  gtk_widget_modify_bg(GTK_WIDGET(card_1),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_2),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_3),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_4),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_5),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_6),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_7),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_8),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_9),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_10),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_11),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_12),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_13),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_14),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_15),GTK_STATE_SELECTED,&red);
+  gtk_widget_modify_bg(GTK_WIDGET(card_16),GTK_STATE_SELECTED,&red);
+
+  button_color_setting("#FF0000");	 
+
+
+   
   //Widget Show
   gtk_widget_show_all(window);
   g_signal_connect_swapped(G_OBJECT(window), "destroy",
