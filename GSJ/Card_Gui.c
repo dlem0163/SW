@@ -1,15 +1,85 @@
 #include <gtk/gtk.h>
+#include <stdio.h>
+#include <string.h>
 
-int flag[16] = {0,};
+int flag[4][4] = {0,};
 
-void reaction(GtkWidget *widget, gpointer data)
+void reaction(int Card_Num);
+
+void Card1_Press()
 {
+  reaction(1);
+}
+void Card2_Press()
+{
+  reaction(2);
+}
+void Card3_Press()
+{
+  reaction(3);
+}
+void Card4_Press()
+{
+  reaction(4);
+}
+void Card5_Press()
+{
+  reaction(5);
+}
+void Card6_Press()
+{
+  reaction(6);
+}
+void Card7_Press()
+{
+  reaction(7);
+}
+void Card8_Press()
+{
+  reaction(8);
+}
+void Card9_Press()
+{
+  reaction(9);
+}
+void Card10_Press()
+{
+  reaction(10);
+}
+void Card11_Press()
+{
+  reaction(11);
+}
+void Card12_Press()
+{
+  reaction(12);
+}
+void Card13_Press()
+{
+  reaction(13);
+}
+void Card14_Press()
+{
+  reaction(14);
+}
+void Card15_Press()
+{
+  reaction(15);
+}
+void Card16_Press()
+{
+  reaction(16);
+}
 
-  volatile int x,y;
-  GdkColor red,white;
-  gdk_color_parse ("red", &red);
-  gdk_color_parse ("white", &white);
-  gtk_widget_modify_bg ( widget, GTK_STATE_NORMAL, &red);
+void reaction(int Card_Num)
+{
+	printf("Card Number is %d\n",Card_Num);
+}
+
+
+void destroy(GtkWidget *widget, gpointer data)
+{
+  gtk_main_quit();
 }
 
 int main( int argc, char *argv[])
@@ -122,24 +192,24 @@ int main( int argc, char *argv[])
   gtk_widget_show_all(window);
   g_signal_connect_swapped(G_OBJECT(window), "destroy",
       G_CALLBACK(gtk_main_quit), NULL);
-  g_signal_connect(card_1,"clicked",G_CALLBACK(reaction),(gpointer)"1");
-  g_signal_connect(card_2,"clicked",G_CALLBACK(reaction),(gpointer)"2");
-  g_signal_connect(card_3,"clicked",G_CALLBACK(reaction),(gpointer)"3");
-  g_signal_connect(card_4,"clicked",G_CALLBACK(reaction),(gpointer)"4");
-  g_signal_connect(card_5,"clicked",G_CALLBACK(reaction),(gpointer)"5");
-  g_signal_connect(card_6,"clicked",G_CALLBACK(reaction),(gpointer)"6");
-  g_signal_connect(card_7,"clicked",G_CALLBACK(reaction),(gpointer)"7");
-  g_signal_connect(card_8,"clicked",G_CALLBACK(reaction),(gpointer)"8");
-  g_signal_connect(card_9,"clicked",G_CALLBACK(reaction),(gpointer)"9");
-  g_signal_connect(card_10,"clicked",G_CALLBACK(reaction),(gpointer)"10");
-  g_signal_connect(card_11,"clicked",G_CALLBACK(reaction),(gpointer)"11");
-  g_signal_connect(card_12,"clicked",G_CALLBACK(reaction),(gpointer)"12");
-  g_signal_connect(card_13,"clicked",G_CALLBACK(reaction),(gpointer)"13");
-  g_signal_connect(card_14,"clicked",G_CALLBACK(reaction),(gpointer)"14");
-  g_signal_connect(card_15,"clicked",G_CALLBACK(reaction),(gpointer)"15");
-  g_signal_connect(card_16,"clicked",G_CALLBACK(reaction),(gpointer)"16");
-  g_signal_connect(exit,"clicked",G_CALLBACK(reaction),(gpointer)"exit");
-  g_signal_connect(start,"clicked",G_CALLBACK(reaction),(gpointer)"start");
+  g_signal_connect(card_1,"clicked",G_CALLBACK(Card1_Press),(gpointer)"1");
+  g_signal_connect(card_2,"clicked",G_CALLBACK(Card2_Press),(gpointer)"2");
+  g_signal_connect(card_3,"clicked",G_CALLBACK(Card3_Press),(gpointer)"3");
+  g_signal_connect(card_4,"clicked",G_CALLBACK(Card4_Press),(gpointer)"4");
+  g_signal_connect(card_5,"clicked",G_CALLBACK(Card5_Press),(gpointer)"5");
+  g_signal_connect(card_6,"clicked",G_CALLBACK(Card6_Press),(gpointer)"6");
+  g_signal_connect(card_7,"clicked",G_CALLBACK(Card7_Press),(gpointer)"7");
+  g_signal_connect(card_8,"clicked",G_CALLBACK(Card8_Press),(gpointer)"8");
+  g_signal_connect(card_9,"clicked",G_CALLBACK(Card9_Press),(gpointer)"9");
+  g_signal_connect(card_10,"clicked",G_CALLBACK(Card10_Press),(gpointer)"10");
+  g_signal_connect(card_11,"clicked",G_CALLBACK(Card11_Press),(gpointer)"11");
+  g_signal_connect(card_12,"clicked",G_CALLBACK(Card12_Press),(gpointer)"12");
+  g_signal_connect(card_13,"clicked",G_CALLBACK(Card13_Press),(gpointer)"13");
+  g_signal_connect(card_14,"clicked",G_CALLBACK(Card14_Press),(gpointer)"14");
+  g_signal_connect(card_15,"clicked",G_CALLBACK(Card15_Press),(gpointer)"15");
+  g_signal_connect(card_16,"clicked",G_CALLBACK(Card16_Press),(gpointer)"16");
+  g_signal_connect(exit,"clicked",G_CALLBACK(destroy),(gpointer)"exit");
+  g_signal_connect(start,"clicked",G_CALLBACK(destroy),(gpointer)"start");
   gtk_main();
 
  
