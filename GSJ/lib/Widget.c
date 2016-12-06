@@ -52,7 +52,7 @@ void reaction(int Card_Num,char *Card)
 	second_num = Card_Num;
   	printf("Card Number is %s(Frist),%s(Second)\n",First,Second);
   	select_flag = 0;
-	if(strcmp(First,Second) == 0)
+	if(strcmp(First,Second) == 0 && first_num != second_num)
 	{
 		printf("Answer!!\n");
 		answer_flag[first_num] = 1;
@@ -451,8 +451,6 @@ void Widget_Show()
   g_signal_connect(card_14,"clicked",G_CALLBACK(Card14_Press),NULL);
   g_signal_connect(card_15,"clicked",G_CALLBACK(Card15_Press),NULL);
   g_signal_connect(card_16,"clicked",G_CALLBACK(Card16_Press),NULL);
-  g_signal_connect(Exit,"clicked",G_CALLBACK(destroy),(gpointer)NULL);
-  g_signal_connect(start,"clicked",G_CALLBACK(destroy),(gpointer)NULL);
   gtk_main();
 }
 
