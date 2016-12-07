@@ -69,14 +69,15 @@ void reaction(int Card_Num,char *Card)
 		}
 	}
         else
-	{	life = life -1;
+	{	
 		if(life == 0)
 		{
 			printf("Game Over\n");
 			destroy(window,NULL);
 		}
-		else
+		else if(first_num != second_num)
 		{
+			life = life -1;
 			printf("Life is %d..\n",life);
 		}
 	}	
