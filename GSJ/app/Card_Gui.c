@@ -12,7 +12,6 @@ int main( int argc, char *argv[])
   Random_Setting();
   Window_Setting();
   Card_Setting();
-  //Label_Setting();
   button_select_color(data);
   button_color_setting("#000000");
   Widget_Show();

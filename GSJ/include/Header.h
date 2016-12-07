@@ -27,6 +27,7 @@ void Card14_Press();
 void Card15_Press();
 void Card16_Press();
 
+extern int life;
 extern int card_data[4][4];
 extern int answer_flag[16];
 extern char *CardNumber;

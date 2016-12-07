@@ -8,7 +8,7 @@ void reaction(int Card_Num,char *Card);
 void button_color_setting(char *color);
 void button_disable(int first,int second);
 
-
+int life = 8;
 char *card[16] = { "1","1","2","2","3","3","4","4","5","5","6","6","7","7","8","8" };
 int pick[16] = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 };
 char *array[4][4] = { 0, };
@@ -37,8 +37,8 @@ void destroy(GtkWidget *widget, gpointer data)
 
 void reaction(int Card_Num,char *Card)
 {
-
-
+  int i;
+  int count = 0;
   if(select_flag == 0)
   {
 	button_color_setting("#000000");
@@ -46,24 +46,42 @@ void reaction(int Card_Num,char *Card)
 	first_num = Card_Num;
 	select_flag = 1;
   }
-  else if(select_flag == 1)	
+  else if(select_flag == 1)
   {
 	Second = Card;
 	second_num = Card_Num;
-  	printf("Card Number is %s(Frist),%s(Second)\n",First,Second);
-  	select_flag = 0;
+    	select_flag = 0;
 	if(strcmp(First,Second) == 0 && first_num != second_num)
 	{
 		printf("Answer!!\n");
 		answer_flag[first_num] = 1;
 		answer_flag[second_num] = 1;
 		button_disable(first_num,second_num);
+		for(i=0;i<16;i++)
+		{
+			if(answer_flag[i] == 1)
+				count = count + 1;
+			if(count == 16)
+			{
+				printf("Success!!\n");
+				destroy(window,NULL);
+			}
+		}
 	}
         else
-		printf("Fail..\n");
+	{	life = life -1;
+		if(life == 0)
+		{
+			printf("Game Over\n");
+			destroy(window,NULL);
+		}
+		else
+		{
+			printf("Life is %d..\n",life);
+		}
+	}	
 	First = Second = "0";
   }
-  
   if(Card_Num == 0)
   {
   	gtk_widget_modify_bg(GTK_WIDGET(card_1),GTK_STATE_NORMAL,&Rcolor[0]);
@@ -184,7 +202,7 @@ void Card_Setting()
   card_4 = gtk_button_new_with_label("?");
   gtk_widget_set_size_request(card_4,81,119);
   gtk_fixed_put(GTK_FIXED(frame),card_4,260,5);
-  
+
   //Card 2_array
   card_5 = gtk_button_new_with_label("?");
   gtk_widget_set_size_request(card_5,81,119);
@@ -235,17 +253,6 @@ void Card_Setting()
   gtk_fixed_put(GTK_FIXED(frame),card_16,260,380);
 }
 
-void Label_Setting()
-{
-  //option
-  start = gtk_button_new_with_label("START");
-  gtk_widget_set_size_request(start,120,30);
-  gtk_fixed_put(GTK_FIXED(frame),start,380,320);
-
-  Exit = gtk_button_new_with_label("EXIT");
-  gtk_widget_set_size_request(Exit,120,30);
-  gtk_fixed_put(GTK_FIXED(frame),Exit,380,355);
-}
 char *RandomColor(char *Card)
 {
 	int i=0;
@@ -254,7 +261,7 @@ char *RandomColor(char *Card)
 		if(strcmp(Card,data[i]) == 0)
 		{
 			return Cardcolor[i];
-		}	
+		}
 	}
 	return NULL;
 }
